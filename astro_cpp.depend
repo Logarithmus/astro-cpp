@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1517369510 source:/mnt/ntfs_files/Coding/astro_cpp/src/main.cpp
+	"math/vector3d.hpp"
+
+1517369642 /mnt/ntfs_files/Coding/astro_cpp/src/math/vector3d.hpp
+	<cmath>
+	<cstdio>
+
