@@ -36,6 +36,7 @@ namespace Math
             {
                 return Vector3D(-x, -y, -z);
             }
+
             Vector3D operator*(const double& c) const
             {
                 return Vector3D(c*x, c*y, c*z);
@@ -47,14 +48,17 @@ namespace Math
                 z *= c;
                 return *this;
             }
+
             Vector3D operator+(const Vector3D& v2) const
             {
                 return Vector3D(x+v2.x, y+v2.y, z+v2.z);
             }
+
             Vector3D operator-(const Vector3D& v2) const
             {
                 return Vector3D(x-v2.x, y-v2.y, z-v2.z);
             }
+
             Vector3D& operator+=(const Vector3D& v2)
             {
                 x += v2.x;
@@ -69,6 +73,7 @@ namespace Math
                 z -= v2.z;
                 return *this;
             }
+
             static double dot(const Vector3D& v1, const Vector3D& v2)
             {
                 return v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
