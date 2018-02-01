@@ -1,8 +1,20 @@
 # depslib dependency file v1.0
-1517369510 source:/mnt/ntfs_files/Coding/astro_cpp/src/main.cpp
+1517460264 source:/mnt/ntfs_files/Coding/astro_cpp/src/main.cpp
 	"math/vector3d.hpp"
+	"astro/orbit.hpp"
 
-1517369642 /mnt/ntfs_files/Coding/astro_cpp/src/math/vector3d.hpp
+1517459199 /mnt/ntfs_files/Coding/astro_cpp/src/math/vector3d.hpp
 	<cmath>
 	<cstdio>
+
+1517460584 /mnt/ntfs_files/Coding/astro_cpp/src/astro/orbit.hpp
+	<cstdio>
+	<cmath>
+	"math/const.hpp"
+	"astro/state_vectors.hpp"
+
+1517460284 /mnt/ntfs_files/Coding/astro_cpp/src/math/const.hpp
+
+1517460293 /mnt/ntfs_files/Coding/astro_cpp/src/astro/state_vectors.hpp
+	"math/vector3d.hpp"
 

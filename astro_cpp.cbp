@@ -33,7 +33,9 @@
 			<Add option="-fexceptions" />
 			<Add directory="src" />
 		</Compiler>
+		<Unit filename="src/astro/lambert.hpp" />
 		<Unit filename="src/astro/orbit.hpp" />
+		<Unit filename="src/astro/state_vectors.hpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/math/const.hpp" />
 		<Unit filename="src/math/vector3d.hpp" />
