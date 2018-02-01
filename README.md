@@ -1,2 +1,2 @@
 # astro_cpp
-Astrodynamics engine in C++
+Astrodynamics library in C++
