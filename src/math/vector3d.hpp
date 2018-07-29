@@ -2,41 +2,50 @@
 #define ASTROCPP_MATH_VECTOR3D_HPP
 
 #include <cmath>
-#include <cstdio>
+#include <iostream>
+#include <immintrin.h> // AVX intrinsics
 
-namespace Math
+namespace astro_cpp
 {
     class Vector3D
     {
         public:
             double x, y, z;
 
-            Vector3D(const double& x, const double& y, const double& z);
+            Vector3D(double x, double y, double z);
+            Vector3D(); //temporary dummy constructor for fucking Izzo's shitcode
 
             double mag() const;
             void print() const;
 
             Vector3D& operator+(); //prefix +
             Vector3D operator-() const;  //prefix -
-
             Vector3D operator+(const Vector3D& v2) const;
             Vector3D operator-(const Vector3D& v2) const;
 
-            Vector3D& operator*=(const double& c);
+            Vector3D& operator*=(double c);
             Vector3D& operator+=(const Vector3D& v2);
             Vector3D& operator-=(const Vector3D& v2);
+            Vector3D& invert();
 
-            Vector3D normalized();
+            Vector3D unit_vector() const;
             static double dot_product(const Vector3D& v1, const Vector3D& v2);
-            static Vector3D cross_product(const Vector3D& v1,
-                                  const Vector3D& v2);
+            static Vector3D cross_product(const Vector3D& v1, const Vector3D& v2);
     };
 
     //Vector3D methods' implementation
-    Vector3D::Vector3D(const double& x, const double& y, const double& z):
+    inline Vector3D::Vector3D(double x, double y, double z):
         x(x),
         y(y),
         z(z)
+    {
+
+    }
+
+    inline Vector3D::Vector3D():
+        x(0.0),
+        y(0.0),
+        z(0.0)
     {
 
     }
@@ -48,10 +57,10 @@ namespace Math
 
     inline void Vector3D::print() const
     {
-        std::printf("\nx = %lf\n"
-                    "y = %lf\n"
-                    "z = %lf\n"
-                    "magnitude = %lf\n", x, y, z, mag());
+        std::cout << "x = " << x
+                  << "y = " << y
+                  << "z = " << z
+                  << "magnitude = " << mag();
     }
 
     inline Vector3D& Vector3D::operator+() //prefix +
@@ -64,25 +73,6 @@ namespace Math
         return Vector3D(-x, -y, -z);
     }
 
-    inline Vector3D& Vector3D::operator*=(const double& c)
-    {
-        x *= c;
-        y *= c;
-        z *= c;
-        return *this;
-    }
-
-    inline Vector3D operator*(const double& c, Vector3D v)
-    {
-        return v *= c;
-    }
-
-    inline Vector3D Vector3D::normalized()
-    {
-        double c = 1 / mag();
-        return c*(*this);
-    }
-
     inline Vector3D Vector3D::operator+(const Vector3D& v2) const
     {
         return Vector3D(x+v2.x, y+v2.y, z+v2.z);
@@ -91,6 +81,19 @@ namespace Math
     inline Vector3D Vector3D::operator-(const Vector3D& v2) const
     {
         return Vector3D(x-v2.x, y-v2.y, z-v2.z);
+    }
+
+    inline Vector3D& Vector3D::operator*=(double c)
+    {
+        x *= c;
+        y *= c;
+        z *= c;
+        return *this;
+    }
+
+    inline Vector3D operator*(double c, Vector3D v)
+    {
+        return v *= c;
     }
 
     inline Vector3D& Vector3D::operator+=(const Vector3D& v2)
@@ -109,19 +112,31 @@ namespace Math
         return *this;
     }
 
-    inline double Vector3D::dot_product(const Vector3D& v1,
-                                        const Vector3D& v2)
+    inline Vector3D& Vector3D::invert()
+    {
+        x = -x;
+        y = -y;
+        z = -z;
+        return *this;
+    }
+
+    inline Vector3D Vector3D::unit_vector() const
+    {
+        double c = 1 / mag();
+        return c * (*this);
+    }
+
+    inline double Vector3D::dot_product(const Vector3D& v1, const Vector3D& v2)
     {
         return v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
     }
 
-    inline Vector3D Vector3D::cross_product(const Vector3D& v1,
-                                            const Vector3D& v2)
+    inline Vector3D Vector3D::cross_product(const Vector3D& v1, const Vector3D& v2)
     {
         return Vector3D(v1.y*v2.z - v2.y*v1.z,
-                        v1.x*v2.z - v2.x*v1.z,
+                        v1.z*v2.x - v2.z*v1.x,
                         v1.x*v2.y - v2.x*v1.y);
     }
-} //namespace math
+} //namespace astro_cpp
 
 #endif // ASTROCPP_MATH_VECTOR3D_HPP

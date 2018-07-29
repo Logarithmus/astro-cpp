@@ -18,3 +18,93 @@
 1517460293 /mnt/ntfs_files/Coding/astro_cpp/src/astro/state_vectors.hpp
 	"math/vector3d.hpp"
 
+1532887294 source:/home/arthur/Projects/astro_cpp/src/main.cpp
+	<iostream>
+	"math/vector3d.hpp"
+	"math/const.hpp"
+	"astro/orbit.hpp"
+	"astro/lambert.hpp"
+	"../tests/astro/lambert_test.hpp"
+	"../tests/astro/orbit_test.hpp"
+	"../tests/math/acos_test.hpp"
+
+1532621518 /home/arthur/Projects/astro_cpp/src/math/vector3d.hpp
+	<cmath>
+	<iostream>
+	<immintrin.h>
+
+1532887491 /home/arthur/Projects/astro_cpp/src/astro/orbit.hpp
+	"math/vector3d.hpp"
+	"math/const.hpp"
+
+1532887412 /home/arthur/Projects/astro_cpp/src/math/const.hpp
+
+1531963436 /home/arthur/Projects/astro_cpp/src/astro/state_vectors.hpp
+	"math/vector3d.hpp"
+
+1532881816 /home/arthur/Projects/astro_cpp/src/astro/lambert.hpp
+	<vector>
+	<utility>
+	"../math/vector3d.hpp"
+
+1532886527 source:/home/arthur/Projects/astro_cpp/src/astro/orbit.cpp
+	"astro/orbit.hpp"
+	<iostream>
+	<cmath>
+	"../math/const.hpp"
+	"../math/vector3d.hpp"
+
+1532886022 source:/home/arthur/Projects/astro_cpp/src/astro/lambert.cpp
+	"lambert.hpp"
+	<cmath>
+	<iostream>
+	"../math/const.hpp"
+
+1532296435 /home/arthur/Projects/astro_cpp/src/astro/lambert_original.hpp
+	<cmath>
+	<vector>
+	"math/vector3d.hpp"
+
+1532623350 source:/home/arthur/Projects/astro_cpp/src/astro/lambert_original.cpp
+	"lambert_original.hpp"
+	"math/vector3d.hpp"
+	<iostream>
+
+1532887491 source:/home/arthur/Projects/astro_cpp/tests/astro/lambert_test.cpp
+	"lambert_test.hpp"
+	<random>
+	<vector>
+	<chrono>
+	<iostream>
+	"math/const.hpp"
+	"astro/orbit.hpp"
+	"astro/lambert.hpp"
+	"astro/lambert_original.hpp"
+
+1532887491 /home/arthur/Projects/astro_cpp/tests/astro/lambert_test.hpp
+
+1532887512 /home/arthur/Projects/astro_cpp/tests/astro/orbit_test.hpp
+
+1532887323 source:/home/arthur/Projects/astro_cpp/tests/astro/orbit_test.cpp
+	"orbit_test.hpp"
+	<iostream>
+	<cstdio>
+	<random>
+	<chrono>
+	<vector>
+	"astro/orbit.hpp"
+	"math/const.hpp"
+
+1532887568 /home/arthur/Projects/astro_cpp/tests/math/acos_test.hpp
+	<iostream>
+	<cmath>
+	"math/const.hpp"
+
+1532887608 source:/home/arthur/Projects/astro_cpp/tests/math/acos_test.cpp
+	"acos_test.hpp"
+	<random>
+	<chrono>
+	<cmath>
+	<iostream>
+	<vector>
+

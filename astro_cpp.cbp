@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-Og" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -21,27 +22,64 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-flto" />
+					<Add option="-O3" />
+					<Add option="-ffast-math" />
+					<Add option="-march=native" />
 				</Compiler>
 				<Linker>
+					<Add option="-flto" />
 					<Add option="-s" />
 				</Linker>
 			</Target>
+			<Target title="Profiling">
+				<Option output="bin/Profiling/astro_cpp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Profiling" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
+					<Add option="-ffast-math" />
+					<Add option="-march=native" />
+					<Add option="-fno-omit-frame-pointer" />
+				</Compiler>
+			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-pedantic" />
+			<Add option="-Wextra" />
 			<Add option="-Wall" />
-			<Add option="-fexceptions" />
+			<Add option="-m64" />
+			<Add option="-std=c++17" />
+			<Add option="-fno-exceptions" />
+			<Add option="-fno-rtti" />
 			<Add directory="src" />
 		</Compiler>
+		<Linker>
+			<Add option="-m64" />
+		</Linker>
+		<Unit filename="src/astro/lambert.cpp" />
 		<Unit filename="src/astro/lambert.hpp" />
+		<Unit filename="src/astro/lambert_original.cpp" />
+		<Unit filename="src/astro/lambert_original.hpp" />
+		<Unit filename="src/astro/orbit.cpp" />
 		<Unit filename="src/astro/orbit.hpp" />
-		<Unit filename="src/astro/state_vectors.hpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/math/const.hpp" />
 		<Unit filename="src/math/vector3d.hpp" />
+		<Unit filename="tests/astro/lambert_test.cpp" />
+		<Unit filename="tests/astro/lambert_test.hpp" />
+		<Unit filename="tests/astro/orbit_test.cpp" />
+		<Unit filename="tests/astro/orbit_test.hpp" />
+		<Unit filename="tests/math/acos_test.cpp" />
+		<Unit filename="tests/math/acos_test.hpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
