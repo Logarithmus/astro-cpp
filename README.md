@@ -2,8 +2,8 @@
 Astrodynamics library in C++
 
 Implemented features:
-  + *Elliptic Kepler's equation solver*. Uses good initial guess and 3rd order Householder's method (about 40% faster than naive Newton's method).
-  + *Lambert's problem solver* with multiple revolutions support. Based on Izzo's solver from PyKEP project (actually, this implementation is about 20% faster)
+  + **Elliptic Kepler's equation solver**. Uses good initial guess and 3rd order Householder's method (about 40% faster than naive Newton's method).
+  + **Lambert's problem solver** with multiple revolutions support. Based on Izzo's solver from PyKEP project (actually, this implementation is about 20% faster)
 
 Future plans:
   + Gravity assists propagator (powered & unpowered)
