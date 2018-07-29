@@ -3,7 +3,6 @@
 
 #include <cmath>
 #include <iostream>
-#include <immintrin.h> // AVX intrinsics
 
 namespace astro_cpp
 {
@@ -13,7 +12,7 @@ namespace astro_cpp
             double x, y, z;
 
             Vector3D(double x, double y, double z);
-            Vector3D(); //temporary dummy constructor for fucking Izzo's shitcode
+            Vector3D();
 
             double mag() const;
             void print() const;
@@ -122,7 +121,7 @@ namespace astro_cpp
 
     inline Vector3D Vector3D::unit_vector() const
     {
-        double c = 1 / mag();
+        double c = 1.0 / mag();
         return c * (*this);
     }
 
