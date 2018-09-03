@@ -30,8 +30,6 @@
 #include <vector>
 #include "math/vector3d.hpp"
 
-//#include "array3D_operations.hpp"
-
 namespace astro_cpp
 {
 
@@ -49,6 +47,8 @@ namespace astro_cpp
  *
  * @author Dario Izzo (dario.izzo _AT_ googlemail.com)
  */
+
+ #define _USE_MATH_DEFINES
 
 class lambert_original
 {

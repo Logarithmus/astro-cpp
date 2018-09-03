@@ -1,110 +1,136 @@
 # depslib dependency file v1.0
-1517460264 source:/mnt/ntfs_files/Coding/astro_cpp/src/main.cpp
-	"math/vector3d.hpp"
-	"astro/orbit.hpp"
-
-1517459199 /mnt/ntfs_files/Coding/astro_cpp/src/math/vector3d.hpp
-	<cmath>
-	<cstdio>
-
-1517460584 /mnt/ntfs_files/Coding/astro_cpp/src/astro/orbit.hpp
-	<cstdio>
-	<cmath>
-	"math/const.hpp"
-	"astro/state_vectors.hpp"
-
-1517460284 /mnt/ntfs_files/Coding/astro_cpp/src/math/const.hpp
-
-1517460293 /mnt/ntfs_files/Coding/astro_cpp/src/astro/state_vectors.hpp
-	"math/vector3d.hpp"
-
-1532887294 source:/home/arthur/Projects/astro_cpp/src/main.cpp
-	<iostream>
-	"math/vector3d.hpp"
-	"math/const.hpp"
-	"astro/orbit.hpp"
-	"astro/lambert.hpp"
-	"../tests/astro/lambert_test.hpp"
-	"../tests/astro/orbit_test.hpp"
-	"../tests/math/acos_test.hpp"
-
-1532621518 /home/arthur/Projects/astro_cpp/src/math/vector3d.hpp
-	<cmath>
-	<iostream>
-	<immintrin.h>
-
-1532887491 /home/arthur/Projects/astro_cpp/src/astro/orbit.hpp
-	"math/vector3d.hpp"
-	"math/const.hpp"
-
-1532887412 /home/arthur/Projects/astro_cpp/src/math/const.hpp
-
-1531963436 /home/arthur/Projects/astro_cpp/src/astro/state_vectors.hpp
-	"math/vector3d.hpp"
-
-1532881816 /home/arthur/Projects/astro_cpp/src/astro/lambert.hpp
-	<vector>
-	<utility>
-	"../math/vector3d.hpp"
-
-1532886527 source:/home/arthur/Projects/astro_cpp/src/astro/orbit.cpp
-	"astro/orbit.hpp"
-	<iostream>
-	<cmath>
-	"../math/const.hpp"
-	"../math/vector3d.hpp"
-
-1532886022 source:/home/arthur/Projects/astro_cpp/src/astro/lambert.cpp
-	"lambert.hpp"
-	<cmath>
-	<iostream>
-	"../math/const.hpp"
-
-1532296435 /home/arthur/Projects/astro_cpp/src/astro/lambert_original.hpp
-	<cmath>
-	<vector>
-	"math/vector3d.hpp"
-
-1532889301 source:/home/arthur/Projects/astro_cpp/src/astro/lambert_original.cpp
+1533886945 source:d:\coding\astro_cpp\src\astro\lambert_original.cpp
 	"lambert_original.hpp"
 	<iostream>
+	"math/const.hpp"
+
+1533886832 d:\coding\astro_cpp\src\astro\lambert_original.hpp
+	<cmath>
+	<vector>
 	"math/vector3d.hpp"
 
-1532887491 source:/home/arthur/Projects/astro_cpp/tests/astro/lambert_test.cpp
+1534800927 d:\coding\astro_cpp\src\math\vector3d.hpp
+	<cmath>
+	<iostream>
+
+1534802444 d:\coding\astro_cpp\src\math\const.hpp
+	<cmath>
+
+1535560323 source:d:\coding\astro_cpp\tests\astro\lambert_test.cpp
 	"lambert_test.hpp"
 	<random>
 	<vector>
 	<chrono>
 	<iostream>
 	"math/const.hpp"
-	"astro/orbit.hpp"
-	"astro/lambert.hpp"
-	"astro/lambert_original.hpp"
+	"orbit/elliptic_orbit.hpp"
+	"astro/lambert_problem.hpp"
 
-1532887491 /home/arthur/Projects/astro_cpp/tests/astro/lambert_test.hpp
+1533659307 d:\coding\astro_cpp\tests\astro\lambert_test.hpp
 
-1532887512 /home/arthur/Projects/astro_cpp/tests/astro/orbit_test.hpp
-
-1532887323 source:/home/arthur/Projects/astro_cpp/tests/astro/orbit_test.cpp
+1535994199 source:d:\coding\astro_cpp\tests\astro\orbit_test.cpp
 	"orbit_test.hpp"
 	<iostream>
-	<cstdio>
 	<random>
 	<chrono>
 	<vector>
-	"astro/orbit.hpp"
+	"orbit/elliptic_orbit.hpp"
 	"math/const.hpp"
 
-1532887568 /home/arthur/Projects/astro_cpp/tests/math/acos_test.hpp
-	<iostream>
-	<cmath>
-	"math/const.hpp"
+1532887512 d:\coding\astro_cpp\tests\astro\orbit_test.hpp
 
-1532887608 source:/home/arthur/Projects/astro_cpp/tests/math/acos_test.cpp
+1535994758 source:d:\coding\astro_cpp\tests\astro\state_vectors_propagation_test.cpp
+	"state_vectors_propagation_test.hpp"
+	<random>
+	<chrono>
+	<vector>
+	"math/const.hpp"
+	"orbit/elliptic_orbit.hpp"
+
+1533242272 d:\coding\astro_cpp\tests\astro\state_vectors_propagation_test.hpp
+
+1534804464 d:\coding\astro_cpp\src\astro\propagate_state_vectors.hpp
+	"orbit/state_vectors.hpp"
+
+1533724903 source:d:\coding\astro_cpp\tests\math\acos_test.cpp
 	"acos_test.hpp"
 	<random>
 	<chrono>
 	<cmath>
 	<iostream>
+
+1533886799 d:\coding\astro_cpp\tests\math\acos_test.hpp
+	<iostream>
+	<cmath>
+	"math/const.hpp"
+
+1534770168 source:d:\coding\astro_cpp\src\astro\kepler_equation.cpp
+	"astro/kepler_equation.hpp"
+	<cmath>
+	<iostream>
+	"math/const.hpp"
+
+1534769675 d:\coding\astro_cpp\src\astro\kepler_equation.hpp
+
+1534804449 source:d:\coding\astro_cpp\src\astro\lambert_problem.cpp
+	"lambert_problem.hpp"
+	<cmath>
+	<iostream>
+	"../math/const.hpp"
+
+1532881816 d:\coding\astro_cpp\src\astro\lambert_problem.hpp
 	<vector>
+	<utility>
+	"../math/vector3d.hpp"
+
+1535994077 d:\coding\astro_cpp\src\orbit\state_vectors.hpp
+	<iostream>
+	"math/vector3d.hpp"
+
+1535994296 source:d:\coding\astro_cpp\src\main.cpp
+	<iostream>
+	<random>
+	"math/vector3d.hpp"
+	"math/const.hpp"
+	"orbit/orbit.hpp"
+	"astro/lambert_problem.hpp"
+	"../tests/astro/lambert_test.hpp"
+	"../tests/astro/state_vectors_propagation_test.hpp"
+	"../tests/astro/orbit_test.hpp"
+	"../tests/math/acos_test.hpp"
+
+1535560220 d:\coding\astro_cpp\src\orbit\orbit.hpp
+	"orbit/state_vectors.hpp"
+	"math/const.hpp"
+
+1534804561 source:d:\coding\astro_cpp\src\astro\propagate_state_vectors.cpp
+	"astro/propagate_state_vectors.hpp"
+	<cmath>
+	"orbit/state_vectors.hpp"
+	"astro/kepler_equation.hpp"
+	"math/const.hpp"
+
+1535560074 source:d:\coding\astro_cpp\src\orbit\orbit.cpp
+	"orbit.hpp"
+	<iostream>
+	<cmath>
+	"math/const.hpp"
+	"orbit/state_vectors.hpp"
+
+1535560238 source:d:\coding\astro_cpp\src\orbit\hyperbolic_orbit.cpp
+	"hyperbolic_orbit.hpp"
+
+1535559975 d:\coding\astro_cpp\src\orbit\hyperbolic_orbit.hpp
+
+1535993865 d:\coding\astro_cpp\src\orbit\elliptic_orbit.hpp
+	"state_vectors.hpp"
+
+1535993796 source:d:\coding\astro_cpp\src\orbit\elliptic_orbit.cpp
+	"elliptic_orbit.hpp"
+	<cmath>
+	<iostream>
+	"math/const.hpp"
+
+1535995115 source:d:\coding\astro_cpp\src\orbit\state_vectors.cpp
+	"state_vectors.hpp"
 

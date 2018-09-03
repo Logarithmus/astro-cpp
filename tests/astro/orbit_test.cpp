@@ -1,11 +1,10 @@
 #include "orbit_test.hpp"
 
 #include <iostream>
-#include <cstdio>
 #include <random>
 #include <chrono>
 #include <vector>
-#include "astro/orbit.hpp"
+#include "orbit/elliptic_orbit.hpp"
 #include "math/const.hpp"
 
 namespace astro_cpp::tests
@@ -56,14 +55,43 @@ namespace astro_cpp::tests
         return E;
     }
 
+    double kepler_solver_newton_improved_guess(double M, double e)
+    {
+
+        // Solving cubic equation based on Pade approximant for sin(E) (more info in the paper)
+        const double alpha = (3.0 * math::PI_SQR + 1.6 * math::PI * (math::PI - std::abs(M)) / (1.0 + e)) / (math::PI_SQR - 6),
+                     d = 3.0 * (1.0 - e) + alpha * e,
+                     M_sqr = M * M,
+                     alpha_d = alpha * d,
+                     q = 2.0 * alpha_d * (1.0 - e) - M_sqr,
+                     q_sqr = q * q,
+                     r = 3.0 * alpha_d * (d - 1.0 + e) * M + M_sqr * M,
+                     pre_w = std::abs(r) + std::sqrt(q_sqr*q + r*r),
+                     w = std::cbrt(pre_w * pre_w);
+
+        // Finally get our initial guess
+        double E = ((2.0 * r * w) / (w*w + w*q + q_sqr) + M) / d,
+               E0;
+        int iters = 0;
+        do
+        {
+            ++iters;
+            E0 = E;
+            E = E0 - (E0 - e * std::sin(E0) - M) / (1 - e * std::cos(E0));
+        } while ((std::abs(E - E0) > 1e-14) && (iters < 15));
+
+        return E;
+    }
+
     void kepler_solver_test(const int N)
     {
-        //double M[N], e[N];
         std::vector<double> M, e;
         M.reserve(N);
         e.reserve(N);
-        std::random_device rand_device;
-        std::mt19937 rand_gen(rand_device());
+        //std::random_device rand_device;
+        using namespace std::chrono;
+        auto seed = high_resolution_clock::now().time_since_epoch().count();
+        std::mt19937 rand_gen(seed);
         std::uniform_real_distribution M_rand(-10 * math::TAU, 10 * math::TAU),
                                        e_rand(0.0, 1.0);
 
@@ -74,7 +102,6 @@ namespace astro_cpp::tests
         }
 
         double sum = 0.0;
-        using namespace std::chrono;
         std::cout.precision(15);
         auto t1 = high_resolution_clock::now();
         for (int i = 0; i < N; ++i)
@@ -91,8 +118,7 @@ namespace astro_cpp::tests
 
             double E = kepler_solver_landis(M[i], e[i]),
                    delta = M[i] - (E - e[i] * std::sin(E));
-           // std::cout << M[i] << std::endl;
-            sum += M[i];
+            sum += E;
             if (delta > 1e-14)
             {
                 std::cout << "M = " << M[i]

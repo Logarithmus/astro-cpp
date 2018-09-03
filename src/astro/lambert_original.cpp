@@ -26,7 +26,7 @@
 #include "lambert_original.hpp"
 
 #include <iostream>
-#include "math/vector3d.hpp"
+#include "math/const.hpp"
 
 namespace astro_cpp
 {
@@ -72,9 +72,9 @@ lambert_original::lambert_original(const Vector3D &r1, const Vector3D &r2, const
 
     // 2 - We now have lambda, T and we will find all x
     // 2.1 - Let us first detect the maximum number of revolutions for which there exists a solution
-    m_Nmax = static_cast<int>(T / M_PI);
+    m_Nmax = static_cast<int>(T / math::PI);
     double T00 = acos(m_lambda) + m_lambda * sqrt(1.0 - lambda2);
-    double T0 = (T00 + m_Nmax * M_PI);
+    double T0 = (T00 + m_Nmax * math::PI);
     double T1 = 2.0 / 3.0 * (1.0 - lambda3), DT = 0.0, DDT = 0.0, DDDT = 0.0;
     if ((m_Nmax <= multi_revs) && (m_Nmax > 0)) {
         if (T < T0) { // We use Halley iterations to find xM and TM
@@ -127,11 +127,11 @@ lambert_original::lambert_original(const Vector3D &r1, const Vector3D &r2, const
     double tmp;
     for (int i = 1; i < m_Nmax + 1; ++i) {
         // 3.2.1 left Householder iterations
-        tmp = pow((i * M_PI + M_PI) / (8.0 * T), 2.0 / 3.0);
+        tmp = pow((i * math::PI + math::PI) / (8.0 * T), 2.0 / 3.0);
         m_x[2 * i - 1] = (tmp - 1) / (tmp + 1);
         m_iters[2 * i - 1] = householder(T, m_x[2 * i - 1], i, 1e-8, 15);
         // 3.2.1 right Householder iterations
-        tmp = pow((8.0 * T) / (i * M_PI), 2.0 / 3.0);
+        tmp = pow((8.0 * T) / (i * math::PI), 2.0 / 3.0);
         m_x[2 * i] = (tmp - 1) / (tmp + 1);
         m_iters[2 * i] = householder(T, m_x[2 * i], i, 1e-8, 15);
     }
@@ -199,7 +199,7 @@ void lambert_original::x2tof2(double &tof, const double x, const int N)
         double alfa = 2.0 * acos(x);
         double beta = 2.0 * asin(sqrt(m_lambda * m_lambda / a));
         if (m_lambda < 0.0) beta = -beta;
-        tof = ((a * sqrt(a) * ((alfa - sin(alfa)) - (beta - sin(beta)) + 2.0 * M_PI * N)) / 2.0);
+        tof = ((a * sqrt(a) * ((alfa - sin(alfa)) - (beta - sin(beta)) + 2.0 * math::PI * N)) / 2.0);
     } else {
         double alfa = 2.0 * std::acosh(x);
         double beta = 2.0 * std::asinh(sqrt(-m_lambda * m_lambda / a));
@@ -228,7 +228,7 @@ void lambert_original::x2tof(double &tof, const double x, const int N)
         double S1 = 0.5 * (1.0 - m_lambda - x * eta);
         double Q = hypergeometricF(S1, 1e-11);
         Q = 4.0 / 3.0 * Q;
-        tof = (eta * eta * eta * Q + 4.0 * m_lambda * eta) / 2.0 + N * M_PI / pow(rho, 1.5);
+        tof = (eta * eta * eta * Q + 4.0 * m_lambda * eta) / 2.0 + N * math::PI / pow(rho, 1.5);
         return;
     } else { // We use Lancaster tof expresion
         //std::cout << "Lancaster" << '\n';
@@ -237,7 +237,7 @@ void lambert_original::x2tof(double &tof, const double x, const int N)
         double d = 0.0;
         if (E < 0) {
             double l = acos(g);
-            d = N * M_PI + l;
+            d = N * math::PI + l;
         } else {
             double f = y * (z - m_lambda * x);
             d = log(f + g);

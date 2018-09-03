@@ -4,13 +4,13 @@
 	<Project>
 		<Option title="astro_cpp" />
 		<Option pch_mode="2" />
-		<Option compiler="gcc" />
+		<Option compiler="gnu_gcc_compiler_x64" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/astro_cpp" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
-				<Option compiler="gcc" />
+				<Option compiler="gnu_gcc_compiler_x64" />
 				<Compiler>
 					<Add option="-Og" />
 					<Add option="-g" />
@@ -20,14 +20,14 @@
 				<Option output="bin/Release/astro_cpp" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
-				<Option compiler="gcc" />
+				<Option compiler="gnu_gcc_compiler_x64" />
 				<Compiler>
 					<Add option="-fomit-frame-pointer" />
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-flto" />
 					<Add option="-O3" />
-					<Add option="-ffast-math" />
 					<Add option="-march=native" />
+					<Add option="-ffast-math" />
 				</Compiler>
 				<Linker>
 					<Add option="-flto" />
@@ -38,13 +38,11 @@
 				<Option output="bin/Profiling/astro_cpp" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Profiling" />
 				<Option type="1" />
-				<Option compiler="gcc" />
+				<Option compiler="gnu_gcc_compiler_x64" />
 				<Compiler>
-					<Add option="-fexpensive-optimizations" />
-					<Add option="-O3" />
-					<Add option="-ffast-math" />
-					<Add option="-march=native" />
+					<Add option="-O2" />
 					<Add option="-fno-omit-frame-pointer" />
+					<Add option="-fno-inline-functions" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -61,19 +59,31 @@
 		<Linker>
 			<Add option="-m64" />
 		</Linker>
-		<Unit filename="src/astro/lambert.cpp" />
-		<Unit filename="src/astro/lambert.hpp" />
+		<Unit filename="src/astro/kepler_equation.cpp" />
+		<Unit filename="src/astro/kepler_equation.hpp" />
 		<Unit filename="src/astro/lambert_original.cpp" />
 		<Unit filename="src/astro/lambert_original.hpp" />
-		<Unit filename="src/astro/orbit.cpp" />
-		<Unit filename="src/astro/orbit.hpp" />
+		<Unit filename="src/astro/lambert_problem.cpp" />
+		<Unit filename="src/astro/lambert_problem.hpp" />
+		<Unit filename="src/astro/propagate_state_vectors.cpp" />
+		<Unit filename="src/astro/propagate_state_vectors.hpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/math/const.hpp" />
 		<Unit filename="src/math/vector3d.hpp" />
+		<Unit filename="src/orbit/elliptic_orbit.cpp" />
+		<Unit filename="src/orbit/elliptic_orbit.hpp" />
+		<Unit filename="src/orbit/hyperbolic_orbit.cpp" />
+		<Unit filename="src/orbit/hyperbolic_orbit.hpp" />
+		<Unit filename="src/orbit/orbit.cpp" />
+		<Unit filename="src/orbit/orbit.hpp" />
+		<Unit filename="src/orbit/state_vectors.cpp" />
+		<Unit filename="src/orbit/state_vectors.hpp" />
 		<Unit filename="tests/astro/lambert_test.cpp" />
 		<Unit filename="tests/astro/lambert_test.hpp" />
 		<Unit filename="tests/astro/orbit_test.cpp" />
 		<Unit filename="tests/astro/orbit_test.hpp" />
+		<Unit filename="tests/astro/state_vectors_propagation_test.cpp" />
+		<Unit filename="tests/astro/state_vectors_propagation_test.hpp" />
 		<Unit filename="tests/math/acos_test.cpp" />
 		<Unit filename="tests/math/acos_test.hpp" />
 		<Extensions>

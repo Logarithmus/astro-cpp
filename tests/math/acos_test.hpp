@@ -48,7 +48,7 @@ namespace astro_cpp::tests
         int i = static_cast<int>(abs_x * size);
         //std::cout << i << std::endl;
         double asin_x = sgn(x) * (lut.value[i + 1] - lut.value[i]) * size * (abs_x - i * step) + lut.value[i];
-        return M_PI_2 - asin_x;
+        return math::PI_OVER_2 - asin_x;
     }
 
     inline double fast_acos_arora_russel(double x)

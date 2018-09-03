@@ -14,19 +14,21 @@ namespace astro_cpp
             Vector3D(double x, double y, double z);
             Vector3D();
 
+            double mag_sqr() const;
             double mag() const;
             void print() const;
 
             Vector3D& operator+(); //prefix +
             Vector3D operator-() const;  //prefix -
-            Vector3D operator+(const Vector3D& v2) const;
-            Vector3D operator-(const Vector3D& v2) const;
-
-            Vector3D& operator*=(double c);
             Vector3D& operator+=(const Vector3D& v2);
+            Vector3D operator+(const Vector3D& v2) const;
             Vector3D& operator-=(const Vector3D& v2);
-            Vector3D& invert();
+            Vector3D operator-(const Vector3D& v2) const;
+            Vector3D& operator*=(double c);
+            Vector3D& operator/=(double c);
+            // operators / and * are outside the class definition
 
+            Vector3D& invert();
             Vector3D unit_vector() const;
             static double dot_product(const Vector3D& v1, const Vector3D& v2);
             static Vector3D cross_product(const Vector3D& v1, const Vector3D& v2);
@@ -34,9 +36,7 @@ namespace astro_cpp
 
     //Vector3D methods' implementation
     inline Vector3D::Vector3D(double x, double y, double z):
-        x(x),
-        y(y),
-        z(z)
+        x{x}, y{y}, z{z}
     {
 
     }
@@ -54,32 +54,53 @@ namespace astro_cpp
         return std::sqrt(x*x + y*y + z*z);
     }
 
-    inline void Vector3D::print() const
+    inline double Vector3D::mag_sqr() const
     {
-        std::cout << "x = " << x
-                  << "y = " << y
-                  << "z = " << z
-                  << "magnitude = " << mag();
+        return x*x + y*y + z*z;
     }
 
-    inline Vector3D& Vector3D::operator+() //prefix +
+    inline void Vector3D::print() const
+    {
+        std::cout << "\nx = " << x
+                  << "\ny = " << y
+                  << "\nz = " << z
+                  << "\nmagnitude = " << mag() << '\n';
+    }
+
+    inline Vector3D& Vector3D::operator+() // prefix +
     {
         return *this;
     }
 
-    inline Vector3D Vector3D::operator-() const  //prefix -
+    inline Vector3D Vector3D::operator-() const // prefix -
     {
         return Vector3D(-x, -y, -z);
     }
 
+    inline Vector3D& Vector3D::operator+=(const Vector3D& v2)
+    {
+        x += v2.x;
+        y += v2.y;
+        z += v2.z;
+        return *this;
+    }
+
     inline Vector3D Vector3D::operator+(const Vector3D& v2) const
     {
-        return Vector3D(x+v2.x, y+v2.y, z+v2.z);
+        return Vector3D(x + v2.x, y + v2.y, z + v2.z);
+    }
+
+    inline Vector3D& Vector3D::operator-=(const Vector3D& v2)
+    {
+        x -= v2.x;
+        y -= v2.y;
+        z -= v2.z;
+        return *this;
     }
 
     inline Vector3D Vector3D::operator-(const Vector3D& v2) const
     {
-        return Vector3D(x-v2.x, y-v2.y, z-v2.z);
+        return Vector3D(x - v2.x, y - v2.y, z - v2.z);
     }
 
     inline Vector3D& Vector3D::operator*=(double c)
@@ -95,20 +116,18 @@ namespace astro_cpp
         return v *= c;
     }
 
-    inline Vector3D& Vector3D::operator+=(const Vector3D& v2)
+    inline Vector3D& Vector3D::operator/=(double c)
     {
-        x += v2.x;
-        y += v2.y;
-        z += v2.z;
-        return *this;
+        const double inv_c = 1.0 / c;
+        x *= inv_c;
+        y *= inv_c;
+        z *= inv_c;
+        return (*this);
     }
 
-    inline Vector3D& Vector3D::operator-=(const Vector3D& v2)
+    inline Vector3D operator/(Vector3D v, double c)
     {
-        x -= v2.x;
-        y -= v2.y;
-        z -= v2.z;
-        return *this;
+        return v /= c;
     }
 
     inline Vector3D& Vector3D::invert()

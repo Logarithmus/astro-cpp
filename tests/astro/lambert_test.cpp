@@ -5,24 +5,37 @@
 #include <chrono>
 #include <iostream>
 #include "math/const.hpp"
-#include "astro/orbit.hpp"
-#include "astro/lambert.hpp"
-#include "astro/lambert_original.hpp"
+#include "orbit/elliptic_orbit.hpp"
+#include "astro/lambert_problem.hpp"
+//#include "astro/lambert_original.hpp"
 
-namespace astro_cpp::tests
+namespace astro_cpp::tests::lambert
 {
+    struct ValidationData
+    {
+        ValidationData(const EllipticOrbit& orbit, double t1, double t2, const Vector3D& v1, const Vector3D& v2);
+
+        EllipticOrbit orbit;
+        double t1, t2;
+        Vector3D v1, v2;
+    };
+
+    ValidationData::ValidationData(const EllipticOrbit& orbit, double t1, double t2, const Vector3D& v1, const Vector3D& v2):
+        orbit(orbit), t1(t1), t2(t2), v1(v1), v2(v2)
+    {
+
+    }
 
     struct TestCase
     {
-        TestCase(EllipticOrbit& orbit, double t1, double t2, StateVectors& state1, StateVectors& state2);
+        TestCase(const Vector3D& r1, const Vector3D& r2, double t1, double t2);
 
-        EllipticOrbit orbit;
-        double t1, t2, delta_t;
-        StateVectors state1, state2;
+        Vector3D r1, r2;
+        double delta_t;
     };
 
-    TestCase::TestCase(EllipticOrbit& orbit, double t1, double t2, StateVectors& state1, StateVectors& state2):
-        orbit(std::move(orbit)), t1(t1), t2(t2), delta_t(t2 - t1), state1(std::move(state1)), state2(std::move(state2))
+    TestCase::TestCase(const Vector3D& r1, const Vector3D& r2, double t1, double t2):
+        r1(r1), r2(r2), delta_t(t2 - t1)
     {
 
     }
@@ -47,10 +60,12 @@ namespace astro_cpp::tests
         const double mu = 1.1723328e18,
                      M0 = 0.0,
                      t0 = 0.0;
+        std::vector<ValidationData> validation_data;
         std::vector<TestCase> test_cases;
         using namespace std::chrono;
 
         auto reserve_start = high_resolution_clock::now();
+        validation_data.reserve(N);
         test_cases.reserve(N);
         auto reserve_end = high_resolution_clock::now();
         long long reserve_time = duration_cast<nanoseconds>(reserve_end - reserve_start).count();
@@ -58,15 +73,17 @@ namespace astro_cpp::tests
                   << static_cast<double>(reserve_time) / N << " ns per element\n" << std::endl;
 
         auto gen_start = high_resolution_clock::now();
+        std::uniform_real_distribution<double> time1(0.0, 0.50001),
+                                               time2(0.50002, 1.0);
         for (int j = 0; j < N; ++j)
         {
             EllipticOrbit orbit(mu, a(rand_gen), e(rand_gen), i(rand_gen), W(rand_gen), w(rand_gen), M0, t0);
-            std::uniform_real_distribution<double> time1(0.0, 0.50001 * orbit.period()),
-                                                   time2(0.50002 * orbit.period(), orbit.period());
-            double t1 = time1(rand_gen), t2 = time2(rand_gen);
+
+            double t1 = time1(rand_gen) * orbit.period(), t2 = time2(rand_gen) * orbit.period();
             StateVectors state1 = orbit.state_vectors_from_time(t1),
                          state2 = orbit.state_vectors_from_time(t2);
-            test_cases.emplace_back(orbit, t1, t2, state1, state2);
+            validation_data.emplace_back(orbit, t1, t2, state1.v, state2.v);
+            test_cases.emplace_back(state1.r, state2.r, t1, t2);
         }
         auto gen_end = high_resolution_clock::now();
         long long gen_time = duration_cast<nanoseconds>(gen_end - gen_start).count();
@@ -81,7 +98,7 @@ namespace astro_cpp::tests
         auto lambert_start = high_resolution_clock::now();
         for (auto test_case: test_cases)
         {
-            lambert_opt.emplace_back(test_case.state1.r, test_case.state2.r, test_case.delta_t, mu, false, 0);
+            lambert_opt.emplace_back(test_case.r1, test_case.r2, test_case.delta_t, mu, false, 0);
         }
         auto lambert_end = high_resolution_clock::now();
         long long elapsed = duration_cast<nanoseconds>(lambert_end - lambert_start).count();
@@ -112,12 +129,12 @@ namespace astro_cpp::tests
         auto check_start = high_resolution_clock::now();
         for (int j = 0; j < N; ++j)
         {
-            double delta_v1_opt = (test_cases[j].state1.v - lambert_opt[j].velocity.back().first).mag(),
-                   delta_v2_opt = (test_cases[j].state2.v - lambert_opt[j].velocity.back().second).mag(),
+            double delta_v1_opt = (validation_data[j].v1 - lambert_opt[j].velocity.back().first).mag(),
+                   delta_v2_opt = (validation_data[j].v2 - lambert_opt[j].velocity.back().second).mag(),
                    //delta_v1_izzo = (test_cases[j].state1.v - lambert_izzo[j].get_v1().back()).mag(),
                    //delta_v2_izzo = (test_cases[j].state2.v - lambert_izzo[j].get_v2().back()).mag(),
-                   v1_kepler = test_cases[j].state1.v.mag(),
-                   v2_kepler = test_cases[j].state2.v.mag(),
+                   v1_kepler = validation_data[j].v1.mag(),
+                   v2_kepler = validation_data[j].v2.mag(),
                    v1_opt = lambert_opt[j].velocity.back().first.mag(),
                    v2_opt = lambert_opt[j].velocity.back().second.mag();
                    //v1_izzo = lambert_izzo[j].get_v1().back().mag(),
@@ -129,9 +146,9 @@ namespace astro_cpp::tests
                  //( (delta_v2_izzo / v2_kepler) > 1e-6)   )
             {
                 ++failures;
-                test_cases[j].orbit.print();
-                std::cout << "t1 = " << test_cases[j].t1 << " (" << test_cases[j].t1 / test_cases[j].orbit.period() << " T)\n";
-                std::cout << "t2 = " << test_cases[j].t2 << " (" << test_cases[j].t2 / test_cases[j].orbit.period() << " T)\n";
+                validation_data[j].orbit.print();
+                std::cout << "t1 = " << validation_data[j].t1 << " (" << validation_data[j].t1 / validation_data[j].orbit.period() << " T)\n";
+                std::cout << "t2 = " << validation_data[j].t2 << " (" << validation_data[j].t2 / validation_data[j].orbit.period() << " T)\n";
 
                 std::cout << "\n    v1_kepler     = " << v1_kepler     << ";  v2_kepler      = " << v2_kepler
                           << "\n    v1_opt        = " << v1_opt        << ";  v2_opt         = " << v2_opt

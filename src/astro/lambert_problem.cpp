@@ -23,7 +23,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.               *
  *****************************************************************************/
 
-#include "lambert.hpp"
+#include "lambert_problem.hpp"
 
 #include <cmath>
 #include <iostream>
@@ -113,13 +113,13 @@ namespace astro_cpp
             double y = std::sqrt(abs_a_m_over_a),
                    g = x * z + lambda * a_m_over_a,
                    d;
-            if (a_m_over_a >= 0)
+            if (a_m_over_a > 0)
             {
-                d = std::acos(g);
+                d = std::acos(g) + revs * math::PI;
             }
             else
             {
-                double f = y * (z - lambda * x);
+                const double f = y * (z - lambda * x);
                 d = std::log(f + g);
             }
             return (x - lambda * z - d / y) / (-a_m_over_a);
