@@ -18,9 +18,9 @@ int main()
     //tests::kepler_solver_test(1000 * 1000);
     //tests::acos_test(10);
     //tests::test_case_size();
-    //tests::lambert::lambert_problem(200 * 1000);
+    tests::lambert::lambert_problem(1000'000);
 
-    tests::state_vectors_propagation(1000'000);
+    //tests::state_vectors_propagation(1000'000);
          // 4.54876098624392e-06
 
     return 0;

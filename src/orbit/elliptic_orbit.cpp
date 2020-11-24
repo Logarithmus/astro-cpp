@@ -54,18 +54,16 @@ namespace astro_cpp
         constexpr double alpha_mult = 1.0 / (math::PI_SQR - 6.0);
 
         // Wrap M to [-PI; +PI]
-        M = std::fmod(M, math::TAU);
-        if (M > math::PI)
-        {
-            M -= math::TAU;
-        }
-        else if (M < -math::PI)
+        M = std::fmod(M + math::PI, math::TAU);
+        if (M < 0.0)
         {
             M += math::TAU;
         }
+        M -= math::PI;
 
         // Solving cubic equation based on Pade approximant for sin(E) (more info in the paper)
-        const double alpha = (3.0 * math::PI_SQR + 1.6 * math::PI * (math::PI - std::abs(M)) / (1.0 + e)) * alpha_mult,
+        const double alpha = (3.0 * math::PI_SQR + 1.6 * math::PI *
+                             (math::PI - std::abs(M)) / (1.0 + e)) * alpha_mult,
                      d = 3.0 * (1.0 - e) + alpha * e,
                      M_sqr = M * M,
                      alpha_d = alpha * d,
