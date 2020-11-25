@@ -1,0 +1,5 @@
+cmake_minimum_required (VERSION 2.8)
+project (astrocpp_demo)
+add_subdirectory (astrocpp)
+add_executable (astrocpp_demo src/main.cpp)
+target_link_libraries (astrocpp_demo LINK_PUBLIC astrocpp)

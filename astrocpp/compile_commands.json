@@ -1,0 +1,52 @@
+[
+{
+  "directory": "/home/artur/Programming/C++/astro-cpp/astrocpp",
+  "command": "/usr/bin/c++ -Dastrocpp_EXPORTS -Isrc -Wall -Wextra -Wpedantic -Og -g -fPIC -fdiagnostics-color=always -std=c++17 -o astrocpp/CMakeFiles/astrocpp.dir/src/astro/lambert_original.cpp.o -c /home/artur/Programming/C++/astro-cpp/astrocpp/src/astro/lambert_original.cpp",
+  "file": "/home/artur/Programming/C++/astro-cpp/astrocpp/src/astro/lambert_original.cpp"
+},
+{
+  "directory": "/home/artur/Programming/C++/astro-cpp/astrocpp",
+  "command": "/usr/bin/c++ -Dastrocpp_EXPORTS -Isrc -Wall -Wextra -Wpedantic -Og -g -fPIC -fdiagnostics-color=always -std=c++17 -o astrocpp/CMakeFiles/astrocpp.dir/src/astro/lambert_problem.cpp.o -c /home/artur/Programming/C++/astro-cpp/astrocpp/src/astro/lambert_problem.cpp",
+  "file": "/home/artur/Programming/C++/astro-cpp/astrocpp/src/astro/lambert_problem.cpp"
+},
+{
+  "directory": "/home/artur/Programming/C++/astro-cpp/astrocpp",
+  "command": "/usr/bin/c++ -Dastrocpp_EXPORTS -Isrc -Wall -Wextra -Wpedantic -Og -g -fPIC -fdiagnostics-color=always -std=c++17 -o astrocpp/CMakeFiles/astrocpp.dir/src/orbit/elliptic_orbit.cpp.o -c /home/artur/Programming/C++/astro-cpp/astrocpp/src/orbit/elliptic_orbit.cpp",
+  "file": "/home/artur/Programming/C++/astro-cpp/astrocpp/src/orbit/elliptic_orbit.cpp"
+},
+{
+  "directory": "/home/artur/Programming/C++/astro-cpp/astrocpp",
+  "command": "/usr/bin/c++ -Dastrocpp_EXPORTS -Isrc -Wall -Wextra -Wpedantic -Og -g -fPIC -fdiagnostics-color=always -std=c++17 -o astrocpp/CMakeFiles/astrocpp.dir/src/orbit/hyperbolic_orbit.cpp.o -c /home/artur/Programming/C++/astro-cpp/astrocpp/src/orbit/hyperbolic_orbit.cpp",
+  "file": "/home/artur/Programming/C++/astro-cpp/astrocpp/src/orbit/hyperbolic_orbit.cpp"
+},
+{
+  "directory": "/home/artur/Programming/C++/astro-cpp/astrocpp",
+  "command": "/usr/bin/c++ -Dastrocpp_EXPORTS -Isrc -Wall -Wextra -Wpedantic -Og -g -fPIC -fdiagnostics-color=always -std=c++17 -o astrocpp/CMakeFiles/astrocpp.dir/src/orbit/orbit.cpp.o -c /home/artur/Programming/C++/astro-cpp/astrocpp/src/orbit/orbit.cpp",
+  "file": "/home/artur/Programming/C++/astro-cpp/astrocpp/src/orbit/orbit.cpp"
+},
+{
+  "directory": "/home/artur/Programming/C++/astro-cpp/astrocpp",
+  "command": "/usr/bin/c++ -Dastrocpp_EXPORTS -Isrc -Wall -Wextra -Wpedantic -Og -g -fPIC -fdiagnostics-color=always -std=c++17 -o astrocpp/CMakeFiles/astrocpp.dir/src/orbit/state_vectors.cpp.o -c /home/artur/Programming/C++/astro-cpp/astrocpp/src/orbit/state_vectors.cpp",
+  "file": "/home/artur/Programming/C++/astro-cpp/astrocpp/src/orbit/state_vectors.cpp"
+},
+{
+  "directory": "/home/artur/Programming/C++/astro-cpp/astrocpp",
+  "command": "/usr/bin/c++ -Dastrocpp_EXPORTS -Isrc -Wall -Wextra -Wpedantic -Og -g -fPIC -fdiagnostics-color=always -std=c++17 -o astrocpp/CMakeFiles/astrocpp.dir/src/tests/astro/lambert_test.cpp.o -c /home/artur/Programming/C++/astro-cpp/astrocpp/src/tests/astro/lambert_test.cpp",
+  "file": "/home/artur/Programming/C++/astro-cpp/astrocpp/src/tests/astro/lambert_test.cpp"
+},
+{
+  "directory": "/home/artur/Programming/C++/astro-cpp/astrocpp",
+  "command": "/usr/bin/c++ -Dastrocpp_EXPORTS -Isrc -Wall -Wextra -Wpedantic -Og -g -fPIC -fdiagnostics-color=always -std=c++17 -o astrocpp/CMakeFiles/astrocpp.dir/src/tests/astro/orbit_test.cpp.o -c /home/artur/Programming/C++/astro-cpp/astrocpp/src/tests/astro/orbit_test.cpp",
+  "file": "/home/artur/Programming/C++/astro-cpp/astrocpp/src/tests/astro/orbit_test.cpp"
+},
+{
+  "directory": "/home/artur/Programming/C++/astro-cpp/astrocpp",
+  "command": "/usr/bin/c++ -Dastrocpp_EXPORTS -Isrc -Wall -Wextra -Wpedantic -Og -g -fPIC -fdiagnostics-color=always -std=c++17 -o astrocpp/CMakeFiles/astrocpp.dir/src/tests/astro/state_vectors_propagation_test.cpp.o -c /home/artur/Programming/C++/astro-cpp/astrocpp/src/tests/astro/state_vectors_propagation_test.cpp",
+  "file": "/home/artur/Programming/C++/astro-cpp/astrocpp/src/tests/astro/state_vectors_propagation_test.cpp"
+},
+{
+  "directory": "/home/artur/Programming/C++/astro-cpp/astrocpp",
+  "command": "/usr/bin/c++ -Dastrocpp_EXPORTS -Isrc -Wall -Wextra -Wpedantic -Og -g -fPIC -fdiagnostics-color=always -std=c++17 -o astrocpp/CMakeFiles/astrocpp.dir/src/tests/math/acos_test.cpp.o -c /home/artur/Programming/C++/astro-cpp/astrocpp/src/tests/math/acos_test.cpp",
+  "file": "/home/artur/Programming/C++/astro-cpp/astrocpp/src/tests/math/acos_test.cpp"
+}
+]
