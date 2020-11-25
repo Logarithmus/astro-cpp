@@ -16,6 +16,6 @@ void acos_test(const int N) {
   const double std_acos_value = std::acos(cos_value);
   const double my_acos_value = std::sqrt(2.0 * (1.0 - cos_value));
   std::cout << "cos       = " << cos_value << "\nstd::acos = " << std_acos_value
-	    << "\nmy::acos  = " << my_acos_value;
+	    << "\nmy::acos  = " << my_acos_value << '\n';
 }
 } // namespace astro_cpp::tests
