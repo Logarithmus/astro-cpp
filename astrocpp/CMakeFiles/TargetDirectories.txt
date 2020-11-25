@@ -1,6 +1,0 @@
-/home/artur/Programming/C++/astro-cpp/astrocpp/CMakeFiles/rebuild_cache.dir
-/home/artur/Programming/C++/astro-cpp/astrocpp/CMakeFiles/astrocpp_demo.dir
-/home/artur/Programming/C++/astro-cpp/astrocpp/CMakeFiles/edit_cache.dir
-/home/artur/Programming/C++/astro-cpp/astrocpp/astrocpp/CMakeFiles/rebuild_cache.dir
-/home/artur/Programming/C++/astro-cpp/astrocpp/astrocpp/CMakeFiles/astrocpp.dir
-/home/artur/Programming/C++/astro-cpp/astrocpp/astrocpp/CMakeFiles/edit_cache.dir
