@@ -5,8 +5,8 @@
 
 #include <tests/astro/lambert_test.hpp>
 #include <tests/astro/orbit_test.hpp>
-#include <tests/math/acos_test.hpp>
 #include <tests/astro/state_vectors_propagation_test.hpp>
+#include <tests/math/acos_test.hpp>
 
 #include <iostream>
 #include <random>
