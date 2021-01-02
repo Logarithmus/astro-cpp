@@ -1,3 +1,7 @@
+# WARNING: This library's development has been suspended, possibly forever.
+### Now the code is being rewritten in Rust programming language, since it's superior to C++ in many ways.
+### All the future development will be conducted here: https://github.com/Graph-Donte-Crypto/AstroGraphicRust
+
 # astro_cpp
 Astrodynamics library in C++
 
